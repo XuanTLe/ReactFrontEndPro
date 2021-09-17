@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Home = (props) =>{
+export const RestaurantsList = (props) =>{
     return(
         <h1>This is home!</h1>
     )
