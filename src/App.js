@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
@@ -12,17 +11,16 @@ function App() {
   return (
     <div className="App">
       <CustomNavbar/>
-      <header className="App-header">
           <BrowserRouter>
               <Switch>
                   <Route path={"/restaurants"} component={RestaurantsList}/>
                   <Route path={"/signup"} component={SignUp}/>
                   <Route path={"/signin"} component={SignIn}/>
-                  <Route path={"/home"} component={Home}/>
+                  <Route path={"/"} component={Home}/>
               </Switch>
           </BrowserRouter>
 
-      </header>
+
     </div>
   );
 }
