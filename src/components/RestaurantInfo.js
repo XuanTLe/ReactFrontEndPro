@@ -20,7 +20,11 @@ export const RestaurantInfo = (props) => {
                 <Modal.Header closeButton>
                     <Modal.Title>{props.info.name}</Modal.Title>
                 </Modal.Header>
+                <Modal.Header>
+                    <p>{props.info.address}</p>
+                </Modal.Header>
                 <Modal.Body>
+
                     <p>{props.info.description}</p>
                     {reviews.loading && <p>loading...</p>}
                     {reviews.data && reviews.data.length>0 && reviews.data.map((current)=> <ReviewCard key={current.id} info={current} />)}
