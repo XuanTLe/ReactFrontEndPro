@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import {Button, Card, Modal} from "react-bootstrap";
+import {Button, Modal} from "react-bootstrap";
 import {useGetRestaurantReviews} from "../service/RestaurantService";
-import {RestaurantCard} from "./RestaurantCard";
 import {ReviewCard} from "./ReviewCard";
 import {WriteReview} from "./WriteReview";
+import {CreateRestaurant} from "./CreateRestaurant";
 
 
 export const RestaurantInfo = (props) => {
@@ -11,6 +11,7 @@ export const RestaurantInfo = (props) => {
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
+    const isAdmin = true;
 
     return (
         <>
@@ -31,6 +32,7 @@ export const RestaurantInfo = (props) => {
                 </Modal.Body>
                 <Modal.Footer>
                     <WriteReview info = {props.info}/>
+                    {isAdmin && <CreateRestaurant info={props.info} type={"update"}/>}
                 </Modal.Footer>
             </Modal>
         </>

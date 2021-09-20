@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import {Alert, Button, Col, FloatingLabel, Form, Modal, Row} from "react-bootstrap";
-import {ReviewCard} from "./ReviewCard";
+import { Button, Col, FloatingLabel, Form, Modal, Row} from "react-bootstrap";
+import {createReview} from "../service/ReviewService";
 
 export const WriteReview = (props) => {
 
@@ -13,19 +13,16 @@ export const WriteReview = (props) => {
     const handleChange = (e) => {
         updateFormData({...formData,
             [e.target.name]: e.target.value})
-        console.log(e.target.value)
     }
     const handleRangeChange = (e) =>{
         let rate = 5* .01 * e.target.value
-        console.log(rate.toFixed(2))
         updateFormData({...formData,
             [e.target.name]: rate.toFixed(2)})
 
 
     }
     const handleSubmit = (e) =>{
-        console.log(formData)
-        e.preventDefault()
+        createReview(formData, 2, props.info.id)
     }
 
 

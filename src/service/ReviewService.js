@@ -1,4 +1,3 @@
-import {useEffect, useState} from "react";
 import axios from "axios";
 import {useGet} from "./Service";
 
@@ -10,5 +9,8 @@ export const useGetReviews = (id) => {
         url = `${url}/${id}`
     }
     useGet(url)
+}
 
+export const createReview = (review, userID, restID) => {
+    return axios.post(`${baseurl}/users/${userID}/${restID}/reviews`, review)
 }
