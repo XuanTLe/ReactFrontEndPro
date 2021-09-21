@@ -1,14 +1,12 @@
 import {Card} from "react-bootstrap";
 import React from "react";
-import {useGetUser} from "../service/UserService";
 
 
 export const ReviewCard = (props) =>{
-    const user = useGetUser(props.info.user)
     return(
         <Card>
-            {user.loading && <p>loading...</p>}
-            {user.data && <Card.Title>{user.data.userName}</Card.Title>}
+            {props.isRestaurant && <Card.Title>{props.info.user}</Card.Title>}
+            {!props.isRestaurant && <Card.Title>{props.info.restaurant}</Card.Title>}
             <Card.Body>
                 <Card.Text>{props.info.description}</Card.Text>
             </Card.Body>

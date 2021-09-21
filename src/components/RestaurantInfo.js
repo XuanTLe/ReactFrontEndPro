@@ -28,7 +28,7 @@ export const RestaurantInfo = (props) => {
 
                     <p>{props.info.description}</p>
                     {reviews.loading && <p>loading...</p>}
-                    {reviews.data && reviews.data.length>0 && reviews.data.map((current)=> <ReviewCard key={current.id} info={current} />)}
+                    {reviews.data && reviews.data.length>0 && reviews.data.map((current)=> <ReviewCard key={current.id} info={current} isRestaurant={true}/>)}
                 </Modal.Body>
                 <Modal.Footer>
                     <WriteReview info = {props.info}/>

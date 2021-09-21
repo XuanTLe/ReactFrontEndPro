@@ -8,7 +8,7 @@ export const useGetReviews = (id) => {
     if(id) {
         url = `${url}/${id}`
     }
-    useGet(url)
+     return useGet(url)
 }
 
 export const createReview = (review, userID, restID) => {

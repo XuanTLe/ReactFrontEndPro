@@ -9,5 +9,11 @@ export const useGetUser = (id) => {
         url = `${url}/${id}`
     }
     return useGet(url)
-
 }
+
+export const useGetUserReviews = (id) =>{
+    const url = `${baseurl}/users/${id}/reviews`
+
+    return useGet(url);
+}
+

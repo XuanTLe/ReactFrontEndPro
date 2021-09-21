@@ -14,7 +14,7 @@ export const CustomNavbar = (props) =>{
                         <Nav.Link href="/restaurants">Restaurants</Nav.Link>
                         {signedIn ? <NavDropdown title="Account" id="basic-nav-dropdown" menuVariant={"dark"}>
                             <NavDropdown.Item href="#action/3.1">My Account</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">My Reviews</NavDropdown.Item>
+                            <NavDropdown.Item href="/myreviews">My Reviews</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="#action/3.4">Sign out</NavDropdown.Item>
                         </NavDropdown> : <Nav.Link href={"/signin"}>Sign in</Nav.Link> }

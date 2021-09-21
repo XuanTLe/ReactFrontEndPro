@@ -6,6 +6,7 @@ import {SignIn} from "./components/SignIn";
 import {SignUp} from "./components/SignUp";
 import {RestaurantsList} from "./components/RestaurantsList";
 import {Home} from "./components/Home";
+import {AccountReviews} from "./components/AccountReviews";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
                   <Route path={"/restaurants"} component={RestaurantsList}/>
                   <Route path={"/signup"} component={SignUp}/>
                   <Route path={"/signin"} component={SignIn}/>
+                  <Route path={"/myreviews"} component={AccountReviews}/>
                   <Route path={"/"} component={Home}/>
               </Switch>
           </BrowserRouter>
