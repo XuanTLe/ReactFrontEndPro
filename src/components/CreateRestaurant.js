@@ -56,7 +56,7 @@ export const CreateRestaurant = (props) => {
 
     return(
         <>
-            <Button variant={"secondary"} onClick={handleShow}>Create New</Button>
+            <Button style={{ margin: "3vw 3vw 0 3vw"} } variant={"primary"} onClick={handleShow}>Create New</Button>
 
             <Modal show={show} onHide={handleClose} size={'lg'}>
                 <Modal.Header closeButton>
