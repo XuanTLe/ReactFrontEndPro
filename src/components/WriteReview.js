@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { Button, Col, FloatingLabel, Form, Modal, Row} from "react-bootstrap";
-import {createReview} from "../service/ReviewService";
+import {createReview, deleteReview, updateReview} from "../service/ReviewService";
 
 export const WriteReview = (props) => {
 
@@ -8,7 +8,13 @@ export const WriteReview = (props) => {
         description: "",
         rating: 2.50,
     })
-    const [formData, updateFormData] = useState(initFormData)
+    const [formData, updateFormData] = useState(
+        {
+            id: props.info.id,
+            description: props.info.description,
+            rating: props.info.rating
+        }
+    )
 
     const handleChange = (e) => {
         updateFormData({...formData,
@@ -22,22 +28,31 @@ export const WriteReview = (props) => {
 
     }
     const handleSubmit = (e) =>{
-        createReview(formData, 2, props.info.id)
+        if(props.type ==="update"){
+            updateReview(formData)
+        }
+        else{
+            createReview(formData, 2, props.restaurant.id)
+        }
     }
 
 
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
+    const handleDelete = () => {
+        deleteReview(props.info.id)
+        window.location.reload(false)
+    }
 
 
     return(
         <>
-            <Button variant={"secondary"} onClick={handleShow}>Write Review</Button>
+            {props.type==="create" ? <Button variant={"secondary"} onClick={handleShow}>Write Review</Button> : <Button variant={"secondary"} onClick={handleShow}>Update Review</Button>}
 
             <Modal show={show} onHide={handleClose} size={'lg'}>
                 <Modal.Header closeButton>
-                    <Modal.Title>{props.info.name} review</Modal.Title>
+                    <Modal.Title>{props.restaurant.name} review</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={handleSubmit}>
@@ -49,6 +64,7 @@ export const WriteReview = (props) => {
                                         as="textarea"
                                         placeholder="Leave a description here"
                                         style={{ height: '100px' }}
+                                        defaultValue={props.info.description}
                                         onChange={handleChange}
                                     />
                                 </FloatingLabel>
@@ -61,9 +77,12 @@ export const WriteReview = (props) => {
                             </Form.Group>
                         </Row>
 
-                        <Button variant="primary" type="submit">
-                            Submit
-                        </Button>
+                        <Row className="mb-3">
+                            {props.type==="update" && <Button variant="danger" type="button" onClick={handleDelete}>Delete</Button>}
+                            <Button variant="primary" type="submit">
+                                Submit
+                            </Button>
+                        </Row>
                     </Form>
                 </Modal.Body>
             </Modal>

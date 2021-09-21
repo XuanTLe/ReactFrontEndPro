@@ -26,3 +26,8 @@ export const updateRestaurant = (restaurant) =>{
     return axios.put(`${baseurl}/admin/restaurants`, restaurant)
 }
 
+export const deleteRestaurant = (restaurantId) =>{
+    return axios.delete(`${baseurl}/admin/restaurants/${restaurantId}`)
+}
+
+

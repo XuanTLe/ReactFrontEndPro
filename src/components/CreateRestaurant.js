@@ -1,14 +1,8 @@
 import React, {useState} from "react";
 import { Button, Col, FloatingLabel, Form, Modal, Row} from "react-bootstrap";
-import {createRestaurant, updateRestaurant} from "../service/RestaurantService";
+import {createRestaurant, deleteRestaurant, updateRestaurant} from "../service/RestaurantService";
 
 export const CreateRestaurant = (props) => {
-
-    const initFormData = Object.freeze({
-        name:"",
-        address:"",
-        description: ""
-    })
 
     const [formData, updateFormData] = useState({
         id: props.info.id,
@@ -31,19 +25,10 @@ export const CreateRestaurant = (props) => {
             createRestaurant(formData, 2)
         }
     }
-    let values
-    switch (props.type) {
-        case 'create':
-            values= initFormData
-            break;
-        case 'update':
-            values={
-                name:props.info.name.toString(),
-                address:props.info.address.toString(),
-                description: props.info.description.toString()
-            }
-            break;
-        default:
+
+    const handleDelete = () => {
+        deleteRestaurant(props.info.id)
+        window.location.reload(false)
     }
 
 
@@ -56,7 +41,7 @@ export const CreateRestaurant = (props) => {
 
     return(
         <>
-            <Button style={{ margin: "3vw 3vw 0 3vw"} } variant={"primary"} onClick={handleShow}>Create New</Button>
+            {props.type==="create" ? <Button style={{margin: "3vw 3vw 0 3vw"}} variant={"primary"} onClick={handleShow}>Create New</Button> : <Button variant={"primary"} onClick={handleShow}>Update Restaurant</Button>}
 
             <Modal show={show} onHide={handleClose} size={'lg'}>
                 <Modal.Header closeButton>
@@ -67,13 +52,13 @@ export const CreateRestaurant = (props) => {
                         <Row className="mb-3">
                             <Form.Group as={Col} controlId="formGridName">
                                 <Form.Label>Restaurant name</Form.Label>
-                                <Form.Control type="text" placeholder="Enter restaurant name" name={"name"} defaultValue={values.name.toString()} onChange={handleChange}  />
+                                <Form.Control type="text" placeholder="Enter restaurant name" name={"name"} defaultValue={props.info.name} onChange={handleChange}  />
                             </Form.Group>
                         </Row>
                         <Row className="mb-3">
                             <Form.Group as={Col} controlId="formGridAddress">
                                 <Form.Label>Restaurant address</Form.Label>
-                                <Form.Control type="text" placeholder="Enter restaurant address" name={"address"} defaultValue={values.address.toString()} onChange={handleChange}/>
+                                <Form.Control type="text" placeholder="Enter restaurant address" name={"address"} defaultValue={props.info.address} onChange={handleChange}/>
                             </Form.Group>
                         </Row>
                         <Row className="mb-3">
@@ -86,7 +71,7 @@ export const CreateRestaurant = (props) => {
                                         as="textarea"
                                         placeholder="Leave a description here"
                                         style={{ height: '100px'}}
-                                        defaultValue={values.description.toString()}
+                                        defaultValue={props.info.description}
                                         onChange={handleChange}
 
                                     />
@@ -94,7 +79,7 @@ export const CreateRestaurant = (props) => {
                             </Form.Group>
                         </Row>
 
-
+                        {props.type==="update" && <Button variant="danger" type="button" onClick={handleDelete}>Delete</Button>}
                         <Button variant="primary" type="submit">
                             Submit
                         </Button>

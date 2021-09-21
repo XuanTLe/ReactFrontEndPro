@@ -14,3 +14,11 @@ export const useGetReviews = (id) => {
 export const createReview = (review, userID, restID) => {
     return axios.post(`${baseurl}/users/${userID}/${restID}/reviews`, review)
 }
+
+export const updateReview = (review) =>{
+    return axios.put(`${baseurl}/users/reviews`, review)
+}
+
+export const deleteReview = (reviewId) =>{
+    return axios.delete(`${baseurl}/users/reviews/${reviewId}`)
+}

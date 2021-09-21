@@ -12,6 +12,8 @@ export const RestaurantInfo = (props) => {
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
     const isAdmin = true;
+    const adminId = 2;
+    console.log(props.info)
 
     return (
         <>
@@ -31,8 +33,8 @@ export const RestaurantInfo = (props) => {
                     {reviews.data && reviews.data.length>0 && reviews.data.map((current)=> <ReviewCard key={current.id} info={current} isRestaurant={true}/>)}
                 </Modal.Body>
                 <Modal.Footer>
-                    <WriteReview info = {props.info}/>
-                    {isAdmin && <CreateRestaurant info={props.info} type={"update"}/>}
+                    <WriteReview restaurant = {props.info} info={{}} type={"create"}/>
+                    {adminId===props.info.user && <CreateRestaurant info={props.info} type={"update"}/>}
                 </Modal.Footer>
             </Modal>
         </>
