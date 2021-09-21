@@ -1,5 +1,6 @@
 import React from "react";
-import {Button, Col, Form, Row} from "react-bootstrap";
+import {Button, Col, Container, Form, Row} from "react-bootstrap";
+import "./Forms.css";
 
 export const SignIn = (props) => {
 
@@ -19,23 +20,26 @@ export const SignIn = (props) => {
     }
 
     return(
-        <Form>
-            <Row className="mb-3">
-                <Form.Group as={Col} controlId="formGridEmail">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control type="text" placeholder="Enter username" name={"username"} onChange={handleChange} />
-                </Form.Group>
+        <Container className={"rounded w-50 bg-light align-content-center"} style={{marginTop: "10px"}}>
+            <Form>
+                <Row className="mb-3">
+                    <Form.Group as={Col} controlId="formGridEmail">
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control type="text" placeholder="Enter username" name={"username"} onChange={handleChange} />
+                    </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" name={"password"} onChange={handleChange}/>
-                </Form.Group>
-            </Row>
+                    <Form.Group as={Col} controlId="formGridPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" placeholder="Password" name={"password"} onChange={handleChange}/>
+                    </Form.Group>
+                </Row>
 
-            <Button variant="primary" type="submit" onClick={handleSubmit}>
-                Submit
-            </Button>
-        </Form>
+                <Button variant="primary" type="submit" onClick={handleSubmit}>
+                    Submit
+                </Button>
+            </Form>
+        </Container>
+
 
     )
 }

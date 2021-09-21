@@ -1,5 +1,5 @@
 import React from "react";
-import {Alert, Button, Col, Form, Row} from "react-bootstrap";
+import {Alert, Button, Col, Container, Form, Row} from "react-bootstrap";
 
 export const SignUp = (props) => {
 
@@ -30,31 +30,33 @@ export const SignUp = (props) => {
     }
 
     return(
-        <Form>
-            <Row className="mb-3">
-                <Form.Group as={Col} controlId="formGridEmail">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control type="text" placeholder="Enter username" name={"username"} onChange={handleChange} />
-                </Form.Group>
-            </Row>
-            <Row className="mb-3">
-                <Form.Group as={Col} controlId="formGridPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Enter password" name={"password"} onChange={handleChange} />
-                </Form.Group>
+        <Container className={"rounded w-50 align-content-center"} style={{marginTop: "10px", backgroundColor:"#3F434B"}}>
+            <Form>
+                <Row className="mb-3">
+                    <Form.Group as={Col} controlId="formGridEmail">
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control type="text" placeholder="Enter username" name={"username"} onChange={handleChange} />
+                    </Form.Group>
+                </Row>
+                <Row className="mb-3">
+                    <Form.Group as={Col} controlId="formGridPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" placeholder="Enter password" name={"password"} onChange={handleChange} />
+                    </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridConfirmPassword">
-                    <Form.Label>Confirm</Form.Label>
-                    <Form.Control type="password" placeholder="Re-enter password" name={"confirmPassword"} onChange={handleChange}/>
-                </Form.Group>
-            </Row>
+                    <Form.Group as={Col} controlId="formGridConfirmPassword">
+                        <Form.Label>Confirm</Form.Label>
+                        <Form.Control type="password" placeholder="Re-enter password" name={"confirmPassword"} onChange={handleChange}/>
+                    </Form.Group>
+                </Row>
 
-            <Button variant="primary" type="submit" onClick={handleSubmit}>
-                Submit
-            </Button>
-            { showWarning ? <Alert variant={'danger'}>Passwords do not match!</Alert> : null}
+                <Button variant="primary" type="submit" onClick={handleSubmit}>
+                    Submit
+                </Button>
+                { showWarning ? <Alert variant={'danger'}>Passwords do not match!</Alert> : null}
 
-        </Form>
+            </Form>
+        </Container>
 
     )
 }

@@ -11,6 +11,7 @@ function App() {
   return (
     <div className="App">
       <CustomNavbar/>
+        <div className={"ContentMain"}>
           <BrowserRouter>
               <Switch>
                   <Route path={"/restaurants"} component={RestaurantsList}/>
@@ -19,7 +20,7 @@ function App() {
                   <Route path={"/"} component={Home}/>
               </Switch>
           </BrowserRouter>
-
+        </div>
 
     </div>
   );

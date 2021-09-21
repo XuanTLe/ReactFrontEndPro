@@ -73,7 +73,7 @@ export const CreateRestaurant = (props) => {
                         <Row className="mb-3">
                             <Form.Group as={Col} controlId="formGridAddress">
                                 <Form.Label>Restaurant address</Form.Label>
-                                <Form.Control type="text" placeholder="Enter restaurant address" name={"address"} defaultValue={values.address.toString()} onChange={handleChange}  />
+                                <Form.Control type="text" placeholder="Enter restaurant address" name={"address"} defaultValue={values.address.toString()} onChange={handleChange}/>
                             </Form.Group>
                         </Row>
                         <Row className="mb-3">
@@ -85,7 +85,7 @@ export const CreateRestaurant = (props) => {
                                         name={"description"}
                                         as="textarea"
                                         placeholder="Leave a description here"
-                                        style={{ height: '100px' }}
+                                        style={{ height: '100px'}}
                                         defaultValue={values.description.toString()}
                                         onChange={handleChange}
 
