@@ -3,13 +3,15 @@ import {RestaurantCard} from "./RestaurantCard";
 import { useGetRestaurant } from "../service/RestaurantService";
 import {CreateRestaurant} from "./CreateRestaurant";
 import {CardGroup, Form, FormControl} from "react-bootstrap";
+import {useGetUser} from "../service/UserService";
 
 export const RestaurantsList = (props) =>{
 
     const {loading, data} = useGetRestaurant()
     const [search, setSearch] = useState("")
-    const isSignedIn = true
-    const isAdmin = true
+    const user = useGetUser(localStorage.getItem("userId"))
+
+
 
     const handleChange = (e)=>{
         setSearch(e.target.value)
@@ -19,7 +21,7 @@ export const RestaurantsList = (props) =>{
     return(
         <div className={"w-100"}>
 
-            {isAdmin && <CreateRestaurant type={"create"} info={{}}/>}
+            {user.data.role==="ROLE_ADMIN" && <CreateRestaurant type={"create"} info={{}}/>}
             <Form style={{margin: "30px"}}>
                 <FormControl
                     type="search"

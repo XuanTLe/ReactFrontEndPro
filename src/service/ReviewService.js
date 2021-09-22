@@ -12,13 +12,28 @@ export const useGetReviews = (id) => {
 }
 
 export const createReview = (review, userID, restID) => {
-    return axios.post(`${baseurl}/users/${userID}/${restID}/reviews`, review)
+    const authAxios = axios.create({
+            baseURL: baseurl,
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`
+        }
+    )
+    return authAxios.post(`/users/${userID}/${restID}/reviews`, review)
 }
 
 export const updateReview = (review) =>{
-    return axios.put(`${baseurl}/users/reviews`, review)
+    const authAxios = axios.create({
+            baseURL: baseurl,
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`
+        }
+    )
+    return authAxios.put(`/users/reviews`, review)
 }
 
 export const deleteReview = (reviewId) =>{
-    return axios.delete(`${baseurl}/users/reviews/${reviewId}`)
+    const authAxios = axios.create({
+            baseURL: baseurl,
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`
+        }
+    )
+    return authAxios.delete(`/users/reviews/${reviewId}`)
 }

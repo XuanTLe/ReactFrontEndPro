@@ -4,7 +4,6 @@ import {RestaurantInfo} from "./RestaurantInfo";
 
 export const RestaurantCard = (props) =>{
 
-console.log(props.info)
     return(
         <Card style={{ width: '18rem', display: 'inline-block', margin: '20px'}}>
             <Card.Header as="h2" >{props.info.name}</Card.Header>

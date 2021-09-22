@@ -2,7 +2,14 @@ import React from "react";
 import {Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
 
 export const CustomNavbar = (props) =>{
-    const signedIn = true;
+    let signedIn = false;
+    if(localStorage.getItem("userId") !== null){
+        signedIn= true;
+    }
+    const signOut = () =>{
+        localStorage.clear();
+        window.location.reload(false);
+    }
     return(
         <Navbar bg="dark" expand="lg" variant={"dark"}>
             <Container>
@@ -13,10 +20,10 @@ export const CustomNavbar = (props) =>{
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/restaurants">Restaurants</Nav.Link>
                         {signedIn ? <NavDropdown title="Account" id="basic-nav-dropdown" menuVariant={"dark"}>
-                            <NavDropdown.Item href="#action/3.1">My Account</NavDropdown.Item>
+                            <NavDropdown.Item href="/myaccount">My Account</NavDropdown.Item>
                             <NavDropdown.Item href="/myreviews">My Reviews</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">Sign out</NavDropdown.Item>
+                            <NavDropdown.Item onClick={signOut}>Sign out</NavDropdown.Item>
                         </NavDropdown> : <Nav.Link href={"/signin"}>Sign in</Nav.Link> }
                         {!signedIn && <Nav.Link href={"/signup"}>Sign up</Nav.Link>}
                     </Nav>

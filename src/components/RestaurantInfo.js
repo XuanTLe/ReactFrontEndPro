@@ -4,6 +4,7 @@ import {useGetRestaurantReviews} from "../service/RestaurantService";
 import {ReviewCard} from "./ReviewCard";
 import {WriteReview} from "./WriteReview";
 import {CreateRestaurant} from "./CreateRestaurant";
+import {useGetUser} from "../service/UserService";
 
 
 export const RestaurantInfo = (props) => {
@@ -11,10 +12,9 @@ export const RestaurantInfo = (props) => {
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
-    const isAdmin = true;
-    const adminId = 2;
-    console.log(props.info)
+    const adminId = localStorage.getItem("userId");
 
+    console.log(adminId + " : " + props.info.user)
     return (
         <>
             <Button variant={"secondary"} onClick={handleShow}>show details</Button>
@@ -34,7 +34,7 @@ export const RestaurantInfo = (props) => {
                 </Modal.Body>
                 <Modal.Footer>
                     <WriteReview restaurant = {props.info} info={{}} type={"create"}/>
-                    {adminId===props.info.user && <CreateRestaurant info={props.info} type={"update"}/>}
+                    {adminId==props.info.user && <CreateRestaurant info={props.info} type={"update"}/>}
                 </Modal.Footer>
             </Modal>
         </>

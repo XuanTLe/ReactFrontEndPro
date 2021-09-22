@@ -32,7 +32,7 @@ export const WriteReview = (props) => {
             updateReview(formData)
         }
         else{
-            createReview(formData, 2, props.restaurant.id)
+            createReview(formData, localStorage.getItem("userId"), props.restaurant.id)
         }
     }
 

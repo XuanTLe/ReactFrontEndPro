@@ -3,7 +3,7 @@ import {ReviewCard} from "./ReviewCard";
 import {useGetUserReviews} from "../service/UserService";
 
 export const AccountReviews = (props) => {
-    const reviews = useGetUserReviews(2)
+    const reviews = useGetUserReviews(localStorage.getItem("userId"))
     console.log(reviews)
 
 

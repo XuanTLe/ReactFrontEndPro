@@ -1,5 +1,7 @@
 import React from "react";
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
+import {getUserJWT} from "../service/UserService";
+import {updateJWT} from "../service/Service";
 
 export const SignIn = (props) => {
 
@@ -14,29 +16,34 @@ export const SignIn = (props) => {
       [e.target.name]: e.target.value.trim()})
     }
     const handleSubmit = (e) => {
-        console.log(formData)
+       getUserJWT(formData).then(data => {
+            updateJWT(data.data.jwt)
+       })
         e.preventDefault()
     }
 
     return(
         <Container className={"rounded w-50 bg-light align-content-center"} style={{marginTop: "10px"}}>
-            <Form>
-                <Row className="mb-3">
-                    <Form.Group as={Col} controlId="formGridEmail">
-                        <Form.Label>Username</Form.Label>
-                        <Form.Control type="text" placeholder="Enter username" name={"username"} onChange={handleChange} />
-                    </Form.Group>
+            {localStorage.getItem("userId") ===null ?
+                <Form>
+                    <Row className="mb-3">
+                        <Form.Group as={Col} controlId="formGridEmail">
+                            <Form.Label>Username</Form.Label>
+                            <Form.Control type="text" placeholder="Enter username" name={"username"} onChange={handleChange} />
+                        </Form.Group>
 
-                    <Form.Group as={Col} controlId="formGridPassword">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" name={"password"} onChange={handleChange}/>
-                    </Form.Group>
-                </Row>
+                        <Form.Group as={Col} controlId="formGridPassword">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" placeholder="Password" name={"password"} onChange={handleChange}/>
+                        </Form.Group>
+                    </Row>
 
-                <Button variant="primary" type="submit" onClick={handleSubmit}>
-                    Submit
-                </Button>
-            </Form>
+                    <Button variant="primary" type="submit" onClick={handleSubmit}>
+                        Submit
+                    </Button>
+                </Form> : <h3>You are signed in!</h3>
+            }
+
         </Container>
 
 
